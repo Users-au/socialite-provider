@@ -1,10 +1,10 @@
 <?php
 
-namespace SocialiteProviders\SLJ;
+namespace SocialiteProviders\Slj;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
 
-class SLJExtendSocialite
+class SljExtendSocialite
 {
     /**
      * Register the provider.

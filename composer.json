@@ -2,9 +2,9 @@
     "name": "socialiteproviders/slj",
     "description": "SLJ OAuth2 Provider for Laravel Socialite",
     "keywords": [
+        "slj",
         "laravel",
         "oauth",
-        "passport",
         "provider",
         "socialite"
     ],
@@ -12,7 +12,7 @@
     "authors": [
         {
             "name": "David Shen",
-            "email": "david@slj.me"
+            "email": "sica@qq.com"
         }
     ],
     "require": {
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SocialiteProviders\\SLJ\\": ""
+            "SocialiteProviders\\Slj\\": ""
         }
     },
     "support": {

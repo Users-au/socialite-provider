@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialiteProviders\SLJ;
+namespace SocialiteProviders\Slj;
 
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Arr;
@@ -50,7 +50,7 @@ class Provider extends AbstractProvider
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase($this->getSLJUrl('authorize_uri'), $state);
+        return $this->buildAuthUrlFromBase($this->getSljUrl('authorize_uri'), $state);
     }
 
     /**
@@ -60,7 +60,7 @@ class Provider extends AbstractProvider
      */
     protected function getTokenUrl()
     {
-        return $this->getSLJUrl('token_uri');
+        return $this->getSljUrl('token_uri');
     }
 
     /**
@@ -72,7 +72,7 @@ class Provider extends AbstractProvider
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get($this->getSLJUrl('userinfo_uri'), [
+        $response = $this->getHttpClient()->get($this->getSljUrl('userinfo_uri'), [
             RequestOptions::HEADERS => [
                 'Authorization' => 'Bearer '.$token,
             ],
@@ -116,7 +116,7 @@ class Provider extends AbstractProvider
         ]);
     }
 
-    protected function getSLJUrl($type)
+    protected function getSljUrl($type)
     {
         return rtrim($this->getConfig('host'), '/').'/'.ltrim(($this->getConfig($type, Arr::get([
             'authorize_uri' => 'oauth/authorize',
