@@ -1,0 +1,33 @@
+{
+    "name": "socialiteproviders/slj",
+    "description": "SLJ OAuth2 Provider for Laravel Socialite",
+    "keywords": [
+        "laravel",
+        "oauth",
+        "passport",
+        "provider",
+        "socialite"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Shen",
+            "email": "david@slj.me"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "socialiteproviders/manager": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SocialiteProviders\\SLJ\\": ""
+        }
+    },
+    "support": {
+        "issues": "https://github.com/socialiteproviders/providers/issues",
+        "source": "https://github.com/socialiteproviders/providers",
+        "docs": "https://socialiteproviders.com/slj"
+    }
+}
