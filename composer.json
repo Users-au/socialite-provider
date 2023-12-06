@@ -23,7 +23,7 @@
     "autoload": {
         "psr-4": {
             "SocialiteProviders\\Usersau\\": ""
-        },
+        }
     },
     "support": {
         "issues": "https://github.com/socialiteproviders/providers/issues",
