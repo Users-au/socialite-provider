@@ -22,8 +22,8 @@
     },
     "autoload": {
         "psr-4": {
-            "SocialiteProviders\\UsersAu\\": ""
-        }
+            "SocialiteProviders\\Usersau\\": ""
+        },
     },
     "support": {
         "issues": "https://github.com/socialiteproviders/providers/issues",
