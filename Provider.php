@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialiteProviders\Slj;
+namespace SocialiteProviders\Usersau;
 
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Arr;
@@ -9,7 +9,7 @@ use SocialiteProviders\Manager\OAuth2\User;
 
 class Provider extends AbstractProvider
 {
-    public const IDENTIFIER = 'SLJ';
+    public const IDENTIFIER = 'USERSAU';
 
     /**
      * {@inheritdoc}
@@ -50,7 +50,7 @@ class Provider extends AbstractProvider
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase($this->getSljUrl('authorize_uri'), $state);
+        return $this->buildAuthUrlFromBase($this->getUsersauUrl('authorize_uri'), $state);
     }
 
     /**
@@ -60,7 +60,7 @@ class Provider extends AbstractProvider
      */
     protected function getTokenUrl()
     {
-        return $this->getSljUrl('token_uri');
+        return $this->getUsersauUrl('token_uri');
     }
 
     /**
@@ -72,7 +72,7 @@ class Provider extends AbstractProvider
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get($this->getSljUrl('userinfo_uri'), [
+        $response = $this->getHttpClient()->get($this->getUsersauUrl('userinfo_uri'), [
             RequestOptions::HEADERS => [
                 'Authorization' => 'Bearer '.$token,
             ],
@@ -116,7 +116,7 @@ class Provider extends AbstractProvider
         ]);
     }
 
-    protected function getSljUrl($type)
+    protected function getUsersauUrl($type)
     {
         return rtrim($this->getConfig('host'), '/').'/'.ltrim(($this->getConfig($type, Arr::get([
             'authorize_uri' => 'oauth/authorize',

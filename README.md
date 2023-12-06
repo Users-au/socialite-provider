@@ -1,7 +1,7 @@
-# SLJ
+# Users.au
 
 ```bash
-composer require socialiteproviders/slj
+composer require socialiteproviders/usersau
 ```
 
 ## Installation & Basic Usage
@@ -11,11 +11,11 @@ Please see the [Base Installation Guide](https://socialiteproviders.com/usage/),
 ### Add configuration to `config/services.php`
 
 ```php
-'slj' => [    
-  'client_id' => env('SLJ_CLIENT_ID'),  
-  'client_secret' => env('SLJ_CLIENT_SECRET'),  
-  'redirect' => env('SLJ_REDIRECT_URI'),
-  'host' => env('SLJ_HOST'),
+'usersau' => [    
+  'client_id' => env('USERSAU_CLIENT_ID'),  
+  'client_secret' => env('USERSAU_CLIENT_SECRET'),  
+  'redirect' => env('USERSAU_REDIRECT_URI'),
+  'host' => env('USERSAU_HOST'),
 ],
 ```
 
@@ -29,7 +29,7 @@ Add the event to your `listen[]` array in `app/Providers/EventServiceProvider`. 
 protected $listen = [
     \SocialiteProviders\Manager\SocialiteWasCalled::class => [
         // ... other providers
-        \SocialiteProviders\Slj\SljExtendSocialite::class.'@handle',
+        \SocialiteProviders\UsersAu\UsersauExtendSocialite::class.'@handle',
     ],
 ];
 ```
@@ -39,7 +39,7 @@ protected $listen = [
 You should now be able to use the provider like you would regularly use Socialite (assuming you have the facade installed):
 
 ```php
-return Socialite::driver('slj')->redirect();
+return Socialite::driver('usersau')->redirect();
 ```
 
 ### Returned User fields

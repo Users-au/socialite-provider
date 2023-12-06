@@ -1,10 +1,10 @@
 <?php
 
-namespace SocialiteProviders\Slj;
+namespace SocialiteProviders\Usersau;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
 
-class SljExtendSocialite
+class UsersauExtendSocialite
 {
     /**
      * Register the provider.
@@ -13,6 +13,6 @@ class SljExtendSocialite
      */
     public function handle(SocialiteWasCalled $socialiteWasCalled)
     {
-        $socialiteWasCalled->extendSocialite('slj', Provider::class);
+        $socialiteWasCalled->extendSocialite('usersau', Provider::class);
     }
 }

@@ -1,8 +1,8 @@
 {
-    "name": "socialiteproviders/slj",
-    "description": "SLJ OAuth2 Provider for Laravel Socialite",
+    "name": "socialiteproviders/usersau",
+    "description": "Users.au OAuth2 Provider for Laravel Socialite",
     "keywords": [
-        "slj",
+        "users.au",
         "laravel",
         "oauth",
         "provider",
@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SocialiteProviders\\Slj\\": ""
+            "SocialiteProviders\\UsersAu\\": ""
         }
     },
     "support": {
         "issues": "https://github.com/socialiteproviders/providers/issues",
         "source": "https://github.com/socialiteproviders/providers",
-        "docs": "https://socialiteproviders.com/slj"
+        "docs": "https://socialiteproviders.com/usersau"
     }
 }
