@@ -1,7 +1,8 @@
 # Users.au
 
 ```bash
-composer require socialiteproviders/usersau
+# composer require socialiteproviders/usersau
+composer require users-au/socialite-provider
 ```
 
 ## Installation & Basic Usage

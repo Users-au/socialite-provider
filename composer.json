@@ -1,5 +1,5 @@
 {
-    "name": "socialiteproviders/usersau",
+    "name": "users-au/socialite-provider",
     "description": "Users.au OAuth2 Provider for Laravel Socialite",
     "keywords": [
         "users.au",
