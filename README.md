@@ -3,7 +3,6 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/users-au/socialite-provider.svg?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
 [![Total Downloads](https://img.shields.io/packagist/dt/users-au/socialite-provider.svg?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
 [![Tests](https://img.shields.io/github/actions/workflow/status/users-au/socialite-provider/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/users-au/socialite-provider/actions/workflows/tests.yml)
-[![Code Coverage](https://img.shields.io/codecov/c/github/users-au/socialite-provider?style=flat-square)](https://codecov.io/gh/users-au/socialite-provider)
 [![PHP Version Require](https://img.shields.io/packagist/php-v/users-au/socialite-provider?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
 [![License](https://img.shields.io/packagist/l/users-au/socialite-provider.svg?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
 
@@ -198,24 +197,12 @@ composer check
 This package uses GitHub Actions for continuous integration with the following workflows:
 
 - **Tests**: Runs unit tests across PHP 7.4, 8.0, 8.1, 8.2, and 8.3
-- **Code Coverage**: Generates and uploads coverage reports to Codecov
 - **Static Analysis**: Runs PHPStan for type checking and code quality
 - **Code Style**: Validates PHP syntax and PSR-4 compliance
 
 All workflows run automatically on:
 - Push to `main` or `master` branches
 - Pull requests to `main` or `master` branches
-
-### Test Coverage
-
-The test suite covers:
-
-- **Provider Configuration**: Tests for all configuration options and defaults
-- **OAuth2 Flow**: Tests for authorization URL generation and token exchange
-- **User Data Mapping**: Tests for user data retrieval and field mapping
-- **Custom Configuration**: Tests for custom endpoints and field mappings
-- **URL Handling**: Tests for proper URL construction with various configurations
-- **Extension Registration**: Tests for Socialite provider registration
 
 ### Test Structure
 
