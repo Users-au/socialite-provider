@@ -1,7 +1,114 @@
-# Users.au
+# Users.au OAuth2 Provider for Laravel Socialite
+
+A Laravel Socialite OAuth2 provider for Users.au authentication service. This package allows you to easily integrate Users.au OAuth2 authentication into your Laravel applications using the Socialite package.
+
+## Overview
+
+This package provides:
+
+- **OAuth2 Authentication**: Seamless integration with Users.au OAuth2 service
+- **Flexible Configuration**: Configurable endpoints and user field mappings
+- **Standard Socialite Interface**: Uses Laravel Socialite's familiar API
+- **Customizable User Mapping**: Map Users.au user data to your application's user model
+
+### Features
+
+- Support for OAuth2 authorization code flow
+- Configurable host and endpoint URLs
+- Custom user field mapping (id, nickname, name, email, avatar)
+- Bearer token authentication for API requests
+- Compatible with Laravel Socialite Manager
+
+### How it Works
+
+1. **OAuth2 Flow**: Implements the standard OAuth2 authorization code flow
+2. **User Authentication**: Redirects users to Users.au for authentication
+3. **Token Exchange**: Exchanges authorization code for access token
+4. **User Data Retrieval**: Fetches user information using the access token
+5. **User Mapping**: Maps Users.au user data to Laravel Socialite User object
+
+## API Endpoints
+
+The Provider makes calls to three main Users.au OAuth2 endpoints:
+
+### 1. Authorization Endpoint
+
+**URL**: `GET {host}/oauth/authorize`
+
+**Purpose**: Redirects user to Users.au for authentication
+
+**Query Parameters**:
+```
+client_id={client_id}
+redirect_uri={redirect_uri}
+response_type=code
+scope={scopes}
+state={state}
+```
+
+**Response**: Redirects to your `redirect_uri` with authorization code
+```
+{redirect_uri}?code={authorization_code}&state={state}
+```
+
+### 2. Token Endpoint
+
+**URL**: `POST {host}/oauth/token`
+
+**Purpose**: Exchange authorization code for access token
+
+**Request Headers**:
+```
+Content-Type: application/x-www-form-urlencoded
+```
+
+**Request Payload**:
+```
+grant_type=authorization_code
+client_id={client_id}
+client_secret={client_secret}
+code={authorization_code}
+redirect_uri={redirect_uri}
+```
+
+**Expected Response**:
+```json
+{
+  "access_token": "your_access_token",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "refresh_token": "your_refresh_token",
+  "scope": "..."
+}
+```
+
+### 3. User Info Endpoint
+
+**URL**: `GET {host}/api/user`
+
+**Purpose**: Retrieve authenticated user's information
+
+**Request Headers**:
+```
+Authorization: Bearer {access_token}
+```
+
+**Expected Response**:
+```json
+{
+  "id": "user_unique_id",
+  "nickname": "user_nickname", 
+  "name": "User Full Name",
+  "email": "user@example.com",
+  "avatar": "https://example.com/avatar.jpg"
+}
+```
+
+**Note**: The user data structure can be customized using the `userinfo_key` configuration and custom field mappings (`user_id`, `user_nickname`, `user_name`, `user_email`, `user_avatar`).
+
+## Installation
 
 ```bash
-# composer require socialiteproviders/usersau
 composer require users-au/socialite-provider
 ```
 

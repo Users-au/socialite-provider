@@ -1,5 +1,6 @@
 {
     "name": "users-au/socialite-provider",
+    "type": "library",
     "description": "Users.au OAuth2 Provider for Laravel Socialite",
     "keywords": [
         "users.au",
