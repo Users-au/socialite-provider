@@ -157,3 +157,71 @@ return Socialite::driver('usersau')->redirect();
 - ``name``
 - ``email``
 - ``avatar``
+
+## Testing
+
+This package includes comprehensive unit tests to ensure reliability and maintainability.
+
+### Running Tests
+
+To run the test suite:
+
+```bash
+# Install dependencies
+composer install
+
+# Run all tests
+composer test
+
+# Or run PHPUnit directly
+./vendor/bin/phpunit
+
+# Run tests with documentation format
+./vendor/bin/phpunit --testdox
+```
+
+### Test Coverage
+
+The test suite covers:
+
+- **Provider Configuration**: Tests for all configuration options and defaults
+- **OAuth2 Flow**: Tests for authorization URL generation and token exchange
+- **User Data Mapping**: Tests for user data retrieval and field mapping
+- **Custom Configuration**: Tests for custom endpoints and field mappings
+- **URL Handling**: Tests for proper URL construction with various configurations
+- **Extension Registration**: Tests for Socialite provider registration
+
+### Test Structure
+
+```
+tests/
+├── ProviderTest.php           # Main provider functionality tests
+└── UsersauExtendSocialiteTest.php  # Extension registration tests
+```
+
+The tests use PHPUnit and Mockery for mocking dependencies, ensuring isolated unit tests without external dependencies.
+
+## Development
+
+### Requirements
+
+- PHP 7.4 or higher
+- Composer
+- PHPUnit (for testing)
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Ensure all tests pass
+5. Submit a pull request
+
+### Code Quality
+
+This package follows PSR-4 autoloading standards and includes:
+
+- Comprehensive unit tests
+- Type hints and return types
+- Proper error handling
+- Documentation for all public methods

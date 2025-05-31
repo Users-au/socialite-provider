@@ -21,10 +21,24 @@
         "ext-json": "*",
         "socialiteproviders/manager": "~4.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0 || ^10.0",
+        "mockery/mockery": "^1.4",
+        "guzzlehttp/guzzle": "^7.0"
+    },
     "autoload": {
         "psr-4": {
             "SocialiteProviders\\Usersau\\": ""
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SocialiteProviders\\Usersau\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage"
     },
     "support": {
         "issues": "https://github.com/socialiteproviders/providers/issues",
