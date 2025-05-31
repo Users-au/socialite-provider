@@ -1,4 +1,28 @@
-.idea
-vendor
-.phpunit.result.cache
+# Dependencies
+/vendor/
 composer.lock
+
+# Testing
+coverage/
+.phpunit.result.cache
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+/build/
+/dist/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp

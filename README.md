@@ -1,5 +1,12 @@
 # Users.au OAuth2 Provider for Laravel Socialite
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/users-au/socialite-provider.svg?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
+[![Total Downloads](https://img.shields.io/packagist/dt/users-au/socialite-provider.svg?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
+[![Tests](https://img.shields.io/github/actions/workflow/status/users-au/socialite-provider/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/users-au/socialite-provider/actions/workflows/tests.yml)
+[![Code Coverage](https://img.shields.io/codecov/c/github/users-au/socialite-provider?style=flat-square)](https://codecov.io/gh/users-au/socialite-provider)
+[![PHP Version Require](https://img.shields.io/packagist/php-v/users-au/socialite-provider?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
+[![License](https://img.shields.io/packagist/l/users-au/socialite-provider.svg?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
+
 A Laravel Socialite OAuth2 provider for Users.au authentication service. This package allows you to easily integrate Users.au OAuth2 authentication into your Laravel applications using the Socialite package.
 
 ## Overview
@@ -178,7 +185,26 @@ composer test
 
 # Run tests with documentation format
 ./vendor/bin/phpunit --testdox
+
+# Run static analysis
+composer analyse
+
+# Run both tests and analysis
+composer check
 ```
+
+### Continuous Integration
+
+This package uses GitHub Actions for continuous integration with the following workflows:
+
+- **Tests**: Runs unit tests across PHP 7.4, 8.0, 8.1, 8.2, and 8.3
+- **Code Coverage**: Generates and uploads coverage reports to Codecov
+- **Static Analysis**: Runs PHPStan for type checking and code quality
+- **Code Style**: Validates PHP syntax and PSR-4 compliance
+
+All workflows run automatically on:
+- Push to `main` or `master` branches
+- Pull requests to `main` or `master` branches
 
 ### Test Coverage
 

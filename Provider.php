@@ -86,7 +86,7 @@ class Provider extends AbstractProvider
      *
      * @param array $user
      *
-     * @return \Laravel\Socialite\User
+     * @return \SocialiteProviders\Manager\OAuth2\User
      */
     protected function mapUserToObject(array $user)
     {
