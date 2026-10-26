@@ -1,12 +1,49 @@
-# Users.au OAuth2 Provider for Laravel Socialite
+<div align="center">
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/users-au/socialite-provider.svg?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
-[![Total Downloads](https://img.shields.io/packagist/dt/users-au/socialite-provider.svg?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
-[![Tests](https://img.shields.io/github/actions/workflow/status/users-au/socialite-provider/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/users-au/socialite-provider/actions/workflows/tests.yml)
-[![PHP Version Require](https://img.shields.io/packagist/php-v/users-au/socialite-provider?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
-[![License](https://img.shields.io/packagist/l/users-au/socialite-provider.svg?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider)
+# Users.au for Laravel Socialite
 
-A Laravel Socialite OAuth2 provider for Users.au authentication service. This package allows you to easily integrate Users.au OAuth2 authentication into your Laravel applications using the Socialite package.
+**Your Socialite flow. Users.au as the identity provider.**
+
+[Install](#installation) · [Configure](#configuration) · [Screenshots](#usersau-in-action) · [API endpoints](#api-endpoints) · [Users.au](https://www.users.au)
+
+[![Packagist](https://img.shields.io/packagist/v/users-au/socialite-provider?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider) [![Downloads](https://img.shields.io/packagist/dt/users-au/socialite-provider?style=flat-square)](https://packagist.org/packages/users-au/socialite-provider) [![PHPUnit tests](https://img.shields.io/badge/tests-PHPUnit-6C9BD2?style=flat-square)](#testing) [![MIT license](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](https://opensource.org/licenses/MIT) [![Issues](https://img.shields.io/github/issues/Users-au/socialite-provider?style=flat-square)](https://github.com/Users-au/socialite-provider/issues) [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](https://github.com/Users-au/socialite-provider/pulls)
+
+</div>
+
+Connect Users.au to an existing Laravel Socialite authentication flow. Configure
+the identity host and endpoints, retrieve the profile, and map it into your own
+application's user and authorization model.
+
+```bash
+composer require users-au/socialite-provider
+```
+
+| 🔐 Familiar Socialite API | 🎛️ Configurable provider | 👤 Your user model |
+| --- | --- | --- |
+| `Socialite::driver('usersau')` for redirects and callbacks. | Identity host, OAuth endpoints and profile field mappings. | Keep control of account linking, local sign-in and permissions. |
+
+## Users.au in action
+
+Users.au hosts the authentication experience on your identity domain. Enable the
+sign-in methods available to your project and connect them to your application
+through OAuth. These official product screenshots show the hosted experience.
+
+<table>
+  <tr><th>🔑 Branded sign-in & social providers</th><th>🛡️ Multi-factor authentication</th></tr>
+  <tr>
+    <td width="50%"><a href="docs/images/usersau-social.png"><img src="docs/images/usersau-social.png" alt="Users.au branded sign-in with Google, Facebook and GitHub options" width="440"></a></td>
+    <td width="50%"><a href="docs/images/usersau-mfa.png"><img src="docs/images/usersau-mfa.png" alt="Users.au authenticator-code challenge with recovery-code option" width="440"></a></td>
+  </tr>
+</table>
+
+<details>
+<summary><strong>👆 Preview the passkey experience</strong></summary>
+
+![Users.au passkey sign-in with a Touch ID prompt](docs/images/usersau-passkey.png)
+
+</details>
+
+[Explore Users.au](https://www.users.au) · [Create a project](https://my.users.au) · [Image sources](docs/images/README.md)
 
 ## Overview
 
@@ -118,7 +155,7 @@ Authorization: Bearer {access_token}
 composer require users-au/socialite-provider
 ```
 
-## Installation & Basic Usage
+## Configuration
 
 Please see the [Base Installation Guide](https://socialiteproviders.com/usage/), then follow the provider specific instructions below.
 
@@ -143,10 +180,15 @@ Add the event to your `listen[]` array in `app/Providers/EventServiceProvider`. 
 protected $listen = [
     \SocialiteProviders\Manager\SocialiteWasCalled::class => [
         // ... other providers
-        \SocialiteProviders\UsersAu\UsersauExtendSocialite::class.'@handle',
+        \SocialiteProviders\Usersau\UsersauExtendSocialite::class.'@handle',
     ],
 ];
 ```
+
+Register your exact callback URL in Users.au and keep the client secret in
+private server configuration. Leave scopes at the provider default unless your
+OAuth registration supports additional scopes. Your app owns local sign-in,
+account linking and server-side authorization after retrieving a Socialite user.
 
 ### Usage
 
@@ -238,3 +280,17 @@ This package follows PSR-4 autoloading standards and includes:
 - Type hints and return types
 - Proper error handling
 - Documentation for all public methods
+
+## Choose your integration
+
+| Project | Use it when you want to… |
+| --- | --- |
+| [Next.js starter](https://github.com/Users-au/nextjs-starter-kit) | Start a Next.js app with server-managed OAuth sessions and a protected dashboard. |
+| [Laravel starter](https://github.com/Users-au/laravel-starter-kit) | Start a Laravel app with Blade templates and Users.au integration. |
+| [Laravel client](https://github.com/Users-au/laravel-client) | Add local user synchronization and authentication routes to a Laravel app. |
+| [**Socialite provider — this repo**](https://github.com/Users-au/socialite-provider) | Connect an existing Laravel Socialite authentication flow to Users.au. |
+| [Frontend client](https://github.com/Users-au/frontend-client) | Use public-client OAuth with PKCE in JavaScript, Vue or React. |
+
+## License and support
+
+[MIT](https://opensource.org/licenses/MIT) · [Open an issue](https://github.com/Users-au/socialite-provider/issues) · [Users.au](https://www.users.au)
