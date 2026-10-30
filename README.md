@@ -238,7 +238,7 @@ composer check
 
 This package uses GitHub Actions for continuous integration with the following workflows:
 
-- **Tests**: Runs unit tests across PHP 7.4, 8.0, 8.1, 8.2, and 8.3
+- **Tests**: Runs unit tests on the coordinated PHP 8.5.12 baseline
 - **Static Analysis**: Runs PHPStan for type checking and code quality
 - **Code Style**: Validates PHP syntax and PSR-4 compliance
 
@@ -260,7 +260,7 @@ The tests use PHPUnit and Mockery for mocking dependencies, ensuring isolated un
 
 ### Requirements
 
-- PHP 7.4 or higher
+- PHP ^8.5.12 and Laravel/Illuminate ^12.70.0
 - Composer
 - PHPUnit (for testing)
 
