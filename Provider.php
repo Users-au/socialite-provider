@@ -14,7 +14,7 @@ class Provider extends AbstractProvider
     /**
      * {@inheritdoc}
      */
-    protected $scopes = [''];
+    protected $scopes = ['openid', 'profile', 'email'];
 
     /**
      * {@inheritdoc}
@@ -73,8 +73,12 @@ class Provider extends AbstractProvider
     protected function getUserByToken($token)
     {
         $response = $this->getHttpClient()->get($this->getUsersauUrl('userinfo_uri'), [
+            RequestOptions::ALLOW_REDIRECTS => false,
+            RequestOptions::CONNECT_TIMEOUT => 2,
+            RequestOptions::TIMEOUT => 5,
             RequestOptions::HEADERS => [
                 'Authorization' => 'Bearer '.$token,
+                'Accept' => 'application/json',
             ],
         ]);
 
@@ -92,13 +96,25 @@ class Provider extends AbstractProvider
     {
         $key = $this->getConfig('userinfo_key', null);
         $data = is_null($key) === true ? $user : Arr::get($user, $key, []);
+        if (!is_array($data)) {
+            throw new \UnexpectedValueException('Invalid Users.au profile.');
+        }
+        $subject = $data['sub'] ?? $this->getUserData($data, 'id');
+        if (is_int($subject) && !isset($data['sub'])) $subject = (string) $subject;
+        if (!is_string($subject) || $subject === ''
+            || (isset($data['sub'], $data['id']) && $subject !== (string) $data['id'])) {
+            throw new \UnexpectedValueException('Invalid Users.au subject.');
+        }
+        $avatar = Arr::get($data, $this->getConfig('user_avatar', 'picture')) ?? ($data['avatar'] ?? null);
+        if (!is_string($avatar) || !filter_var($avatar, FILTER_VALIDATE_URL)
+            || !in_array(parse_url($avatar, PHP_URL_SCHEME), ['http', 'https'], true)) $avatar = null;
 
         return (new User())->setRaw($data)->map([
-            'id'       => $this->getUserData($data, 'id'),
-            'nickname' => $this->getUserData($data, 'nickname'),
+            'id'       => $subject,
+            'nickname' => $this->getUserData($data, 'nickname') ?? ($data['preferred_username'] ?? null),
             'name'     => $this->getUserData($data, 'name'),
             'email'    => $this->getUserData($data, 'email'),
-            'avatar'   => $this->getUserData($data, 'avatar'),
+            'avatar'   => $avatar,
         ]);
     }
 

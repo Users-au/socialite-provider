@@ -294,3 +294,11 @@ This package follows PSR-4 autoloading standards and includes:
 ## License and support
 
 [MIT](https://opensource.org/licenses/MIT) · [Open an issue](https://github.com/Users-au/socialite-provider/issues) · [Users.au](https://www.users.au)
+
+## Identity profile contract (2.0)
+
+Provider 2 targets PHP ^8.5.12 / Laravel ^12.70.0 with Usersau Laravel SDK 2.1. It requests openid/profile/email by default. Consumers needing account-wide locale, timezone and theme also request preferences:read and preferences:write.
+
+Socialite getId() uses the standard sub, getAvatar() uses picture, and getRaw() retains the scoped standard profile claims and urn:usersau:preferences. Missing optional claims remain absent; inconsistent sub/id values are rejected. UserInfo calls have bounded timeouts and do not follow redirects.
+
+Use SDK UserProfile and IdentityClient for typed claims, versioned preference updates and token refresh. The provider owns OAuth transport, not application preference storage or browser theme state. See [the shared protocol](https://github.com/sicaboy/shared-saas/blob/fix/shared-theme-manager/docs/identity-profile-preferences.md).

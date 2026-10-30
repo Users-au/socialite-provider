@@ -160,8 +160,9 @@ class ProviderTest extends TestCase
         $client->shouldReceive('get')
             ->once()
             ->with('https://your-company.users.au/api/user', [
+                'allow_redirects' => false, 'connect_timeout' => 2, 'timeout' => 5,
                 'headers' => [
-                    'Authorization' => 'Bearer access_token'
+                    'Authorization' => 'Bearer access_token', 'Accept' => 'application/json'
                 ]
             ])
             ->andReturn($response);
@@ -350,5 +351,25 @@ class ProviderTest extends TestCase
 
         $this->assertEquals('456', $this->provider->getUserData($userData, 'id'));
         $this->assertEquals('customuser', $this->provider->getUserData($userData, 'nickname'));
+    }
+    public function test_standard_subject_picture_and_full_raw_claims_are_preserved(): void
+    {
+        $profile = ['sub' => 'subject', 'picture' => 'https://identity.test/me.png', 'given_name' => 'Jane',
+            'zoneinfo' => 'Australia/Sydney', 'locale' => 'zh-CN', 'urn:usersau:preferences' => ['sub' => 'subject', 'theme' => 'dark', 'version' => 2]];
+        $user = $this->provider->mapUserToObject($profile);
+        $this->assertSame('subject', $user->getId());
+        $this->assertSame($profile['picture'], $user->getAvatar());
+        $this->assertSame($profile, $user->getRaw());
+    }
+
+    public function test_inconsistent_subjects_are_rejected(): void
+    {
+        $this->expectException(\UnexpectedValueException::class);
+        $this->provider->mapUserToObject(['sub' => 'one', 'id' => 'another']);
+    }
+
+    public function test_unsafe_pictures_are_omitted(): void
+    {
+        $this->assertNull($this->provider->mapUserToObject(['sub' => 'one', 'picture' => 'javascript:alert(1)'])->getAvatar());
     }
 } 
