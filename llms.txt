@@ -1,0 +1,16 @@
+# Users.au for Laravel Socialite
+
+> Laravel Socialite OAuth2 provider for Users.au (`Socialite::driver('usersau')`): authorization code flow, configurable endpoints and user field mapping. Composer package `users-au/socialite-provider`. Part of Users.au (https://www.users.au), a hosted identity service.
+
+Install / start: `composer require users-au/socialite-provider`
+
+## Docs
+- [README](https://github.com/Users-au/socialite-provider/blob/main/README.md): install, configuration, usage, troubleshooting and FAQ
+- [Users.au](https://www.users.au): hosted authentication service
+- [Users.au console](https://my.users.au): create a project and an OAuth application
+
+## Related projects
+- [Laravel starter kit](https://github.com/Users-au/laravel-starter-kit)
+- [Next.js starter kit](https://github.com/Users-au/nextjs-starter-kit)
+- [Laravel client (Composer)](https://github.com/Users-au/laravel-client)
+- [Frontend client (npm)](https://github.com/Users-au/frontend-client)
