@@ -281,6 +281,24 @@ This package follows PSR-4 autoloading standards and includes:
 - Proper error handling
 - Documentation for all public methods
 
+## FAQ
+
+### How do I use Users.au with Laravel Socialite?
+
+Install the provider with `composer require users-au/socialite-provider`, follow [Installation](#installation) and [Configuration](#configuration), then use `Socialite::driver('usersau')` for redirects and callbacks.
+
+### Which OAuth flow and endpoints does the provider use?
+
+The standard OAuth2 authorization code flow. It calls `GET {host}/oauth/authorize`, `POST {host}/oauth/token` and `GET {host}/api/user` (with a Bearer access token). See [API endpoints](#api-endpoints).
+
+### Which user fields are mapped to the Socialite user?
+
+`id`, `nickname`, `name`, `email` and `avatar`. The field mappings are configurable.
+
+### When should I use the Socialite provider instead of the Laravel client?
+
+Use the provider when you already have a Socialite flow and want to control account linking and local sign-in yourself. Use the [Laravel client](https://github.com/Users-au/laravel-client) to add ready-made authentication routes and local user synchronization.
+
 ## Choose your integration
 
 | Project | Use it when you want to… |
